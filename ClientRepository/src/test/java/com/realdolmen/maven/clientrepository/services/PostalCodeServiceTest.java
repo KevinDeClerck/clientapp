@@ -81,6 +81,13 @@ public class PostalCodeServiceTest {
     
     @Test
     public void insertPostalCodeTest() throws Exception {
-        
+            PostalCode postalCode = new PostalCode();
+      when(postalCodeRepository.insertItem(postalCode)).thenReturn(postalCode);
+    //injected value, with no need for testing => mock it
+    
+      PostalCode result = postalCodeService.insertPostalCode(postalCode);  
+      
+      assertEquals(result, postalCode);
+        verify(postalCodeRepository, times(1)).insertItem(postalCode);
     }
 }

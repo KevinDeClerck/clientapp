@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
@@ -53,6 +54,12 @@ public class PersonServiceTest {
 
     @Test
     public void insertPersonTest() throws Exception {
-
+        Person person = new Person();
+      when(personRepository.insertItem(person)).thenReturn(person);
+       
+      Person result = personService.insertPerson(person);  
+      
+      assertEquals(result, person);
+        verify(personRepository, times(1)).insertItem(person);
     }
 }
