@@ -22,7 +22,6 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
     public static final String FIRM = "client_firm";
     
     
-    
     public AddressRepository() {
         super("address", "");
     }
@@ -38,6 +37,7 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
         Address address = new Address();
         PostalCode postalCode = new PostalCode();
         try {
+            address = new Address();
             address.setNumber(resultSet.getInt(KEY));
             address.setTypeAddress(resultSet.getString(TYPE));
             address.setNumber(resultSet.getInt(NUMBER));
