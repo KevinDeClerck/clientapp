@@ -2,6 +2,7 @@ package com.realdolmen.maven.clientrepository.repositories;
 
 import com.realdolmen.maven.clientrepository.domain.Address;
 import com.realdolmen.maven.clientrepository.domain.Firm;
+import com.realdolmen.maven.clientrepository.domain.Klant;
 import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.domain.PostalCode;
 import static com.realdolmen.maven.clientrepository.repositories.PersonRepository.FIRST_NAME;
@@ -27,7 +28,6 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
     public static final String FIRM = "client_firm";
     
     
-    
     public AddressRepository() {
         super("address", "");
     }
@@ -39,12 +39,20 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
     //TODO implement
     @Override
     public Address createObject(ResultSet resultSet) {
-        Address address = new Address();
+        Address address = null;
+        PostalCode postalCode = new PostalCode();
         try {
+            address = new Address();
             address.setNumber(resultSet.getInt(KEY));
             address.setTypeAddress(resultSet.getString(TYPE));
             address.setStreet(resultSet.getString(STREET));
             address.setNumber(resultSet.getInt(NUMBER));
+            address.setNumber(resultSet.getInt(BOX));
+            postalCode.setNumber(resultSet.getInt(POSTALCODE));
+            address.setPostalCode(postalCode);
+            address.setNumber(resultSet.getInt(PERSON));
+            address.setNumber(resultSet.getInt(FIRM));
+            
             return address;
         } catch (SQLException ex) {
             Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
