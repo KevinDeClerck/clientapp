@@ -45,9 +45,16 @@ public class FirmServiceTest {
     public void testFindById() throws Exception {
     }
 
-    @Ignore
+    
     @Test
     public void insertFirmTestSuccess() throws Exception {
+        Firm firm = new Firm();
+      when(firmRepository.insertItem(firm)).thenReturn(firm);
+       
+      Firm result = firmService.insertFirm(firm);  
+      
+        assertEquals(result, firm);
+        verify(firmRepository, times(1)).insertItem(firm);
     }
 
     @Test

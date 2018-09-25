@@ -1,6 +1,7 @@
 package com.realdolmen.maven.clientrepository.repositories;
 
-import com.realdolmen.maven.clientrepository.domain.Address;
+
+import com.realdolmen.maven.clientrepository.domain.*;
 import java.sql.ResultSet;
 
 
@@ -32,7 +33,13 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
     //TODO implement
     @Override
     public String getValuesString(Address c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (c.getKlant() instanceof Person){
+            //client person
+            return "("+null+","+c.getKlant().getNumber()+","+null+")";
+        }else if (c.getKlant()instanceof Firm){
+            return "("+null+","+c.getKlant().getNumber()+")";
+        }
+        return "";
     }
     
     

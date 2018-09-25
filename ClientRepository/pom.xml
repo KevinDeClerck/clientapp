@@ -43,6 +43,7 @@
             <version>1.7.18</version>
             <type>jar</type>
         </dependency>
+
     </dependencies>
     <build>
         <finalName>ClientRepository</finalName>
@@ -132,5 +133,5 @@
             </plugin>
         </plugins>
     </reporting>
-    <name>ClientRepositorySteven</name>
+    <name>ClientRepositoryKevin</name>
 </project>

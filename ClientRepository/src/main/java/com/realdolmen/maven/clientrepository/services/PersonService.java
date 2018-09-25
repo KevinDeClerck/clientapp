@@ -34,9 +34,10 @@ public class PersonService {
   
     public Person insertPerson(Person person) throws NoQueryPossibleException{
         //insert also the default address
-        if(person.getAddress().isEmpty()){
-            //should not be empty
-        }
+        //if(person.getAddress().isEmpty()){
+         //should not be empty
+            
+        //}
         return personRepository.insertItem(person);
     }
     
