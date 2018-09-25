@@ -7,6 +7,7 @@ public class Address {
     private String street;
     private int number;
     private PostalCode postalCode;
+    private Klant klant;
     
     public Address() {
     }
@@ -34,7 +35,23 @@ public class Address {
     public void setPostalCode(PostalCode postalCode) {
         this.postalCode = postalCode;
     }
+     public String getTypeAddress() {
+        return typeAddress;
+    }
+
+    public void setTypeAddress(String typeAddress) {
+        this.typeAddress = typeAddress;
+    }
+
+    public Klant getKlant() {
+        return klant;
+    }
+
+    public void setKlant(Klant klant) {
+        this.klant = klant;
+    }
    
+    
     @Override
     public String toString() {
         String card = "******************************\n"
