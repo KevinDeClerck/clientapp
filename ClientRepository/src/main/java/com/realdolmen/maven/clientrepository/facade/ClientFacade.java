@@ -24,7 +24,7 @@ public class ClientFacade {
     public ClientFacade() {
         this.postalCodeService = new PostalCodeService(new PostalCodeRepository());
         //need implementation
-        this.addressService = new AddressService();
+        this.addressService = new AddressService(new AddressRepository());
         this.personService = new PersonService(new PersonRepository());
         this.firmService = new FirmService(new FirmRepository());
     }
