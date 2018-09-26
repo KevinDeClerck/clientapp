@@ -4,6 +4,7 @@ package com.realdolmen.maven.clientrepository.facade;
 import com.realdolmen.maven.clientrepository.domain.Klant;
 import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
+import com.realdolmen.maven.clientrepository.repositories.PersonRepository;
 import com.realdolmen.maven.clientrepository.services.AddressService;
 import com.realdolmen.maven.clientrepository.services.FirmService;
 import com.realdolmen.maven.clientrepository.services.PersonService;
@@ -30,28 +31,22 @@ public class ClientFacadeTest {
    
     @Mock
     private PostalCodeService postalCodeService;
+    @Mock
     private AddressService addressService;
+    @Mock
     private PersonService personService;
+    @Mock
     private FirmService firmService;
+    @Mock
+    private PersonRepository personRepository;
     
     @Before
     public void init(){
         clientFacade = new ClientFacade();
     }
     
-    @Ignore
     @Test
     public void testGetAllClients() throws NoQueryPossibleException {
-    
-        //data initialiseren
-        List<Person> persons = new ArrayList<>();
-        when(personService.findAll()).thenReturn(persons);
-
-        //Test the method
-        List<Klant> result = clientFacade.getAllClients();
-        //verify
-        assertEquals(persons, result);
-        //verify(personService, times(1)).findAll();
     }
         
     @Test

@@ -1,7 +1,10 @@
 
 package com.realdolmen.maven.clientrepository.services;
 
+import com.realdolmen.maven.clientrepository.domain.Address;
+import com.realdolmen.maven.clientrepository.domain.Klant;
 import com.realdolmen.maven.clientrepository.domain.Person;
+import com.realdolmen.maven.clientrepository.domain.PostalCode;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
 import com.realdolmen.maven.clientrepository.repositories.PersonRepository;
 import java.util.ArrayList;
@@ -33,12 +36,12 @@ public class PersonService {
    }
   
     public Person insertPerson(Person person) throws NoQueryPossibleException{
+        return personRepository.insertItem(person);
         //insert also the default address
         //if(person.getAddress().isEmpty()){
          //should not be empty
             
         //}
-        return personRepository.insertItem(person);
+    }
     }
     
-}
