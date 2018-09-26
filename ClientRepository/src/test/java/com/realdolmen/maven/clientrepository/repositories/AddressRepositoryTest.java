@@ -1,8 +1,6 @@
-
 package com.realdolmen.maven.clientrepository.repositories;
 
 import com.realdolmen.maven.clientrepository.domain.Address;
-import com.realdolmen.maven.clientrepository.domain.Firm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.Test;
@@ -10,27 +8,25 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 
 public class AddressRepositoryTest {
-    
+
     private AddressRepository addressRepository;
-    
+
     @Mock
     private ResultSet resultSet;
-    
+
     @Before
-    public void init(){
+    public void init() {
         addressRepository = new AddressRepository(AbstractRepositoryTest.URL);
     }
-   
-     @Test
-        public void createObjectAddressTestSuccess() throws SQLException {
+
+    @Test
+    public void createObjectAddressTestSuccess() throws SQLException {
         when(resultSet.getInt(AddressRepository.KEY))
                 .thenReturn(1);
         when(resultSet.getString(AddressRepository.TYPE))
@@ -48,19 +44,23 @@ public class AddressRepositoryTest {
         when(resultSet.getInt(AddressRepository.FIRM))
                 .thenReturn(1234);
         Address result = addressRepository.createObject(resultSet);
-        assertEquals(1234,result.getNumber());
-        assertEquals("straat", result.getStreet());
-        assertEquals("home", result.getTypeAddress());
         
+        assertEquals(1, result.getKey());
+        assertEquals("home", result.getTypeAddress());
+        assertEquals("straat", result.getStreet());
+        assertEquals(123, result.getNumber());
+        assertEquals(12, result.getBox());
+        //assertEquals(4567, result.get);
+        //assertEquals(2000, result.getPostalCode());
+
     }
- 
+
     @Test
     public void testGetColumnString() {
     }
 
-
     @Test
     public void testGetValuesString() {
     }
-    
+
 }
