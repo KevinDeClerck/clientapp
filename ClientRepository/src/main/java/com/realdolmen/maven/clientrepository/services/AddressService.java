@@ -16,17 +16,18 @@ public class AddressService {
     
     private AddressRepository addressRepository;
     
-   // private PostalCodeService postalcodeservice;
+    private PostalCodeService postalService;
     
     
-     public AddressService(AddressRepository addressRepository) {
+    public AddressService(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
-     public Address findAddressById(int id) throws NoQueryPossibleException {
+    public Address findAddressById(int id) throws NoQueryPossibleException {
          return addressRepository.findById(id);
      }
      
-       public List<Address> findAllAddressForClientPerson() throws NoQueryPossibleException {
+    public List<Address> findAllAddressForClientPerson() throws NoQueryPossibleException {
+        //aanpassen zodat alleen addressen van personen worden gevonden
         return addressRepository.findAll();
     }
     
@@ -41,7 +42,7 @@ public class AddressService {
        
     //Insert Address
     
-    private PostalCodeService postalService;
+  
     
     //Insert Address(Address address)
     //Address -> addressRepository.findbyId
