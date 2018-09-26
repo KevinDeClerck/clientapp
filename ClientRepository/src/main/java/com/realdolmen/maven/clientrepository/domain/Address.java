@@ -3,24 +3,26 @@ package com.realdolmen.maven.clientrepository.domain;
 
 public class Address {
     
+    private int key;
     private String typeAddress;
     private String street;
     private int number;
+    private int box;
     private PostalCode postalCode;
     private Klant klant;
+    
+    
 
     public Address(){
     }
-    
-    public Klant getKlant() {
-        return klant;
+
+    public int getKey() {
+        return key;
     }
 
-    public void setKlant(Klant klant) {
-        this.klant = klant;
+    public void setKey(int key) {
+        this.key = key;
     }
-    
-    
 
     public String getTypeAddress() {
         return typeAddress;
@@ -29,7 +31,7 @@ public class Address {
     public void setTypeAddress(String typeAddress) {
         this.typeAddress = typeAddress;
     }
-    
+
     public String getStreet() {
         return street;
     }
@@ -46,6 +48,14 @@ public class Address {
         this.number = number;
     }
 
+    public int getBox() {
+        return box;
+    }
+
+    public void setBox(int box) {
+        this.box = box;
+    }
+
     public PostalCode getPostalCode() {
         return postalCode;
     }
@@ -53,6 +63,15 @@ public class Address {
     public void setPostalCode(PostalCode postalCode) {
         this.postalCode = postalCode;
     }
+
+    public Klant getKlant() {
+        return klant;
+    }
+
+    public void setKlant(Klant klant) {
+        this.klant = klant;
+    }
+    
 
     @Override
     public String toString() {
