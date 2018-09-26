@@ -21,9 +21,19 @@ public class ClientFacade {
     private PersonService personService;
     private FirmService firmService;
 
+    protected ClientFacade(PostalCodeService postalCodeService, AddressService addressService, PersonService personService, FirmService firmService) {
+        this.postalCodeService = postalCodeService;
+        this.addressService = addressService;
+        this.personService = personService;
+        this.firmService = firmService;
+    }
+
+    
+    
     public ClientFacade() {
         this.postalCodeService = new PostalCodeService(new PostalCodeRepository());
         //need implementation
+        
         this.addressService = new AddressService(new AddressRepository());
         this.personService = new PersonService(new PersonRepository());
         this.firmService = new FirmService(new FirmRepository());
