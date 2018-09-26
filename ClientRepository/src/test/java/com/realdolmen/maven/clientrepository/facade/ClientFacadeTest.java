@@ -4,6 +4,7 @@ package com.realdolmen.maven.clientrepository.facade;
 import com.realdolmen.maven.clientrepository.domain.Klant;
 import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
+import com.realdolmen.maven.clientrepository.repositories.PersonRepository;
 import com.realdolmen.maven.clientrepository.services.AddressService;
 import com.realdolmen.maven.clientrepository.services.FirmService;
 import com.realdolmen.maven.clientrepository.services.PersonService;
@@ -18,7 +19,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+
 import static org.mockito.Mockito.*;
 
 
@@ -27,19 +28,22 @@ import static org.mockito.Mockito.*;
 public class ClientFacadeTest {
     
    private ClientFacade clientFacade;
+   private PersonService personService;
    
     @Mock
     private PostalCodeService postalCodeService;
     private AddressService addressService;
-    private PersonService personService;
+    
     private FirmService firmService;
+    private PersonRepository personRepository;
     
     @Before
     public void init(){
         clientFacade = new ClientFacade();
+        personService = new PersonService(personRepository);
     }
     
-    @Ignore
+    
     @Test
     public void testGetAllClients() throws NoQueryPossibleException {
     
