@@ -43,7 +43,9 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
             address.setBox(resultSet.getInt(BOX));
             address.setStreet(resultSet.getString(STREET));
             postalCode.setNumber(resultSet.getInt(POSTALCODE));
+            address.setPostalCode(postalCode);
             klant.setNumber(resultSet.getInt(PERSON));
+            address.setKlant(klant);
             klant.setNumber(resultSet.getInt(FIRM));
             return address;
         } catch (SQLException ex) {
