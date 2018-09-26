@@ -52,10 +52,12 @@ public class FirmServiceTest {
     @Test
     public void insertFirmTestSuccess() throws Exception {
         Firm firm = new Firm();
-      when(firmRepository.insertItem(firm)).thenReturn(firm);
+        firm.setNumber(1);
+      when(firmRepository.insertItem(firm)).thenReturn(1);
+      when(firmRepository.findById(1)).thenReturn(firm);
       Firm result = firmService.insertFirm(firm);  
-        assertEquals(result, firm);
-        verify(firmRepository, times(1)).insertItem(firm);
+      assertEquals(result, firm);
+      verify(firmRepository, times(1)).insertItem(firm);
     }
 
     @Test

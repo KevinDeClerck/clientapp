@@ -3,6 +3,7 @@ package com.realdolmen.maven.clientrepository.services;
 import com.realdolmen.maven.clientrepository.domain.Firm;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
 import com.realdolmen.maven.clientrepository.repositories.FirmRepository;
+
 import java.util.List;
 
 public class FirmService {
@@ -27,7 +28,8 @@ public class FirmService {
     }
 
     public Firm insertFirm(Firm firm) throws NoQueryPossibleException {
-        return firmRepository.insertItem(firm);
+        int i = firmRepository.insertItem(firm);
+        return findById(i);
     }
 
 }

@@ -52,6 +52,7 @@ public class PostalCodeService {
     }
 
     public PostalCode insertPostalCode(PostalCode postalCode) throws NoQueryPossibleException {
-        return postalCodeRepository.insertItem(postalCode);
+        postalCodeRepository.insertItem(postalCode);
+        return findById(postalCode.getNumber());
     }
 }
