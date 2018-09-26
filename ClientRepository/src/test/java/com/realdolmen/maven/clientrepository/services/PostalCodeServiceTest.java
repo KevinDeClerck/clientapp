@@ -33,19 +33,7 @@ public class PostalCodeServiceTest {
         postalCodeService = new PostalCodeService(postalCodeRepository);
     }
     
-    public PostalCodeServiceTest() {
-    }
-
-    /**
-     * Test of addPostalCode method, of class PostalCodeService.
-     */
-    @Test
-    public void testAddPostalCode() {
-    }
-
-    /**
-     * Test of findAllPostalCodes method, of class PostalCodeService.
-     */
+   
     @Test
     public void testFindAllPostalCodes() throws Exception {
     }
