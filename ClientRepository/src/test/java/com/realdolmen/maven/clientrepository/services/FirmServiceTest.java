@@ -18,9 +18,9 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FirmServiceTest {
-    //Object to test
+
     private FirmService firmService;
-    //Object(s) not to test but needed for the object to test => Mocks
+
     @Mock
     private FirmRepository firmRepository;
     
@@ -31,28 +31,29 @@ public class FirmServiceTest {
 
     @Test
     public void testFindAll() throws Exception {
-        //init data to test
         List<Firm> firms = new ArrayList<>();
         when(firmRepository.findAll()).thenReturn(firms);
-        //test the method
         List<Firm> result = firmService.findAll();
-        //verify the results
         assertEquals(result, firms);
         verify(firmRepository,times(1)).findAll();
     }
 
-    @Test
-    public void testFindById() throws Exception {
+   @Test
+    public void findByIDFirmTestSuccess() throws NoQueryPossibleException{
+        Firm firm = new Firm();
+        when(firmRepository.findById(1)).thenReturn(firm);
+        Firm result = firmService.findById(1);
+        assertEquals(firm, result);
+        verify(firmRepository,times(1)).findById(1);
+        
+        
     }
-
     
     @Test
     public void insertFirmTestSuccess() throws Exception {
         Firm firm = new Firm();
       when(firmRepository.insertItem(firm)).thenReturn(firm);
-       
       Firm result = firmService.insertFirm(firm);  
-      
         assertEquals(result, firm);
         verify(firmRepository, times(1)).insertItem(firm);
     }

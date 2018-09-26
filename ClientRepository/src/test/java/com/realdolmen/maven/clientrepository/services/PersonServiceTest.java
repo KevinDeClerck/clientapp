@@ -3,6 +3,8 @@ package com.realdolmen.maven.clientrepository.services;
 import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
 import com.realdolmen.maven.clientrepository.repositories.PersonRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -30,18 +32,24 @@ public class PersonServiceTest {
         personService = new PersonService(personRepository);
     }
 
-    /**
-     * Test of findAll method, of class PersonService.
-     */
     @Test
-    public void testFindAll() throws Exception {
+    public void findAllPersonTestSucces() throws NoQueryPossibleException{
+        List<Person> persons = new ArrayList<>();
+        when(personRepository.findAll()).thenReturn(persons);
+        List<Person> result = personService.findAll();
+        assertEquals(persons, result);
+        verify(personRepository, times(1)).findAll();
     }
-
-    /**
-     * Test of findById method, of class PersonService.
-     */
+    
     @Test
-    public void testFindById() throws Exception {
+    public void findByIDTest() throws NoQueryPossibleException{
+        Person person = new Person();
+        when(personRepository.findById(1)).thenReturn(person);
+        Person result = personService.findById(1);
+        assertEquals(person, result);
+        verify(personRepository,times(1)).findById(1);
+        
+        
     }
 
     @Test
@@ -56,9 +64,7 @@ public class PersonServiceTest {
     public void insertPersonTest() throws Exception {
         Person person = new Person();
       when(personRepository.insertItem(person)).thenReturn(person);
-       
       Person result = personService.insertPerson(person);  
-      
       assertEquals(result, person);
         verify(personRepository, times(1)).insertItem(person);
     }

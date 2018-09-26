@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.realdolmen.maven.clientrepository.repositories.PostalCodeRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
@@ -35,21 +37,46 @@ public class PostalCodeServiceTest {
     
    
     @Test
-    public void testFindAllPostalCodes() throws Exception {
+    public void FindAllPostalCodesTestSuccess() throws Exception {
+        List<PostalCode> postalCodes = new ArrayList<>();
+        when(postalCodeRepository.findAll()).thenReturn(postalCodes);
+        List<PostalCode> result = postalCodeService.findAllPostalCodes();
+        assertEquals(postalCodes, result);
+        verify(postalCodeRepository, times(1)).findAll();
     }
 
-    /**
-     * Test of findAllPostalCodesFromTheNine method, of class PostalCodeService.
-     */
+   
+    
+     private void createPostals(List<PostalCode> listToFill){
+        for(int i = 7; i<=10 ; i++ ){
+            PostalCode postalCode = new PostalCode();
+            postalCode.setNumber(i*1000);
+            listToFill.add(postalCode); 
+        }
+     }
     @Test
     public void testFindAllPostalCodesFromTheNine() throws Exception {
+        
+           List<PostalCode> postalCodes = new ArrayList<>();
+        createPostals(postalCodes);
+        when(postalCodeRepository.findAll()).thenReturn(postalCodes);
+        List<PostalCode> result = postalCodeService.findAllPostalCodesFromTheNine();
+        assertNotEquals(postalCodes, result);
+        assertEquals(1, result.size());
+        assertEquals(9000, result.get(0).getNumber());
+        verify(postalCodeRepository, times (1)).findAll();
     }
 
-    /**
-     * Test of findById method, of class PostalCodeService.
-     */
+  
+    
     @Test
     public void testFindById() throws Exception {
+        PostalCode postalCode = new PostalCode();
+        when(postalCodeRepository.findById(1)).thenReturn(postalCode);
+        PostalCode result = postalCodeService.findById(1);
+        assertEquals(postalCode, result);
+        verify(postalCodeRepository, times (1)).findById(1);
+        
     }
     
     @Test
@@ -60,9 +87,6 @@ public class PostalCodeServiceTest {
         verify(postalCodeRepository, times(1)).deleteItem(postalCode.getNumber());        
     }
 
-    /**
-     * Test of updatePostalCode method, of class PostalCodeService.
-     */
     @Test
     public void testUpdatePostalCode() {
     }
@@ -71,11 +95,10 @@ public class PostalCodeServiceTest {
     public void insertPostalCodeTest() throws Exception {
             PostalCode postalCode = new PostalCode();
       when(postalCodeRepository.insertItem(postalCode)).thenReturn(postalCode);
-    //injected value, with no need for testing => mock it
-    
       PostalCode result = postalCodeService.insertPostalCode(postalCode);  
-      
       assertEquals(result, postalCode);
         verify(postalCodeRepository, times(1)).insertItem(postalCode);
     }
 }
+
+
