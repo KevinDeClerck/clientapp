@@ -1,6 +1,7 @@
 package com.realdolmen.maven.clientrepository.repositories;
 
 import com.realdolmen.maven.clientrepository.domain.Address;
+import com.realdolmen.maven.clientrepository.domain.PostalCode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.Test;
@@ -19,10 +20,14 @@ public class AddressRepositoryTest {
 
     @Mock
     private ResultSet resultSet;
+    
+    @Mock
+    private PostalCode postalCode;
 
     @Before
     public void init() {
         addressRepository = new AddressRepository(AbstractRepositoryTest.URL);
+        postalCode = new PostalCode();
     }
 
     @Test
@@ -50,8 +55,10 @@ public class AddressRepositoryTest {
         assertEquals("straat", result.getStreet());
         assertEquals(123, result.getNumber());
         assertEquals(12, result.getBox());
-        //assertEquals(4567, result.get);
-        //assertEquals(2000, result.getPostalCode());
+        //assertEquals(4567, result.getBox());
+         postalCode = result.getPostalCode();
+        
+        assertEquals(2000, postalCode.getNumber());
 
     }
 

@@ -79,6 +79,9 @@ public abstract class AbstractRepository<C, T> {
 
     public void updateItem(C item) {
         //try it when you are curious, or have the time
+        
+        
+        
     }
 
     public T insertItem(C item) throws NoQueryPossibleException {
