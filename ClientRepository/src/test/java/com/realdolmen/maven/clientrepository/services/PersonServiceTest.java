@@ -9,17 +9,15 @@ import java.util.List;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import org.mockito.runners.MockitoJUnitRunner;
+import static org.junit.Assert.*;
 
 /**
  * @author SDOAX36
@@ -53,7 +51,6 @@ public class PersonServiceTest {
         Person result = personService.findById(1);
         assertEquals(person, result);
         verify(personRepository, times(1)).findById(1);
-
 
     }
 

@@ -25,4 +25,7 @@ public class AbstractRepositoryTest <C extends AbstractRepository,T>{
         List<T> t = repository.findAll();
         Assert.assertFalse(t.isEmpty());
     }
+    
+    
+    
 }

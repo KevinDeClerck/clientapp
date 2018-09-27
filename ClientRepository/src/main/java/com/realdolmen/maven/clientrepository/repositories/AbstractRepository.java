@@ -77,10 +77,21 @@ public abstract class AbstractRepository<C, T> {
         }
     }
 
-    public void updateItem(C item) {
+    public void updateItem(C item) throws SQLException {
         //try it when you are curious, or have the time
-
-     
+        //van de abstractRepository overnemen createobject nemen 
+        try(Connection connection = createConnection()){
+        
+         PreparedStatement pstatement = connection.prepareStatement("UPDATE" + tableName + " WHERE " + idName + " = " + item);
+            pstatement.executeUpdate();
+            
+        
+    //    return"";
+        }catch (Exception e) {
+            throw new SQLException("Find by id " + tableName + " can not be excecuted");
+        }
+        
+        
     }
 
     public T insertItem(C item) throws NoQueryPossibleException {
