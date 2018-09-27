@@ -63,6 +63,7 @@ public class PersonRepositoryTest {
         //test the object
         Person result = personRepository.createObject(resultSet);
         
+        //verify the result 
         verify(resultSet,times(1)).getInt(PersonRepository.KEY);
         verifyNoMoreInteractions(resultSet);
     }

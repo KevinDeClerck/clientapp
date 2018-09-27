@@ -77,10 +77,22 @@ public class ClientFacadeTest {
         List<Klant> facades = clientFacade.getAllClients();
         assertEquals(clients, facades);
         verify(personService, times(1)).findAll();          
+        verify(firmService, times(1)).findAll();          
     }
         
     @Test
-    public void testFindClientById() {
+    public void testFindClientById() throws NoQueryPossibleException {
+        Person person = new Person();
+        Firm firm = new Firm();
+        
+        when(personService.findById(1)).thenReturn(person);
+        when(firmService.findById(1)).thenReturn(firm);
+        Klant caseP = clientFacade.findClientById(1, 'p');
+        Klant caseF = clientFacade.findClientById(1, 'f');
+        assertEquals(person, caseP);
+        assertEquals(firm, caseF);
+        verify(personService, times(1)).findById(1);
+        verify(firmService, times(1)).findById(1);    
     }
     
 }

@@ -2,46 +2,40 @@ package com.realdolmen.maven.clientrepository.repositories;
 
 import com.realdolmen.maven.clientrepository.domain.Firm;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FirmRepositoryTest {
 
     private FirmRepository firmRepository;
-
-
+    
+    
     @Mock
     private ResultSet resultSet;
-
+    
     @Before
-    public void init() {
+    public void init(){
         firmRepository = new FirmRepository(AbstractRepositoryTest.URL);
     }
-
+    
     @Test
     public void findAllTestResultNotEmpty() throws NoQueryPossibleException {
         firmRepository = new FirmRepository();
         assertFalse(firmRepository.findAll().isEmpty());
     }
-
+    
     @Test
     public void deleteItemTest() throws NoQueryPossibleException {
         firmRepository = new FirmRepository();
@@ -88,7 +82,7 @@ public class FirmRepositoryTest {
     }
 }
 
-
+    
 //    private void insertFirm(){
 //        Firm firm = new Firm();
 //        firm.setNumber(100);
