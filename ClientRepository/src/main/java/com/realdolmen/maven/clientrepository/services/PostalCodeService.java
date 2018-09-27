@@ -4,6 +4,7 @@ import com.realdolmen.maven.clientrepository.domain.PostalCode;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
 import com.realdolmen.maven.clientrepository.repositories.PostalCodeRepository;
 import com.sun.corba.se.impl.ior.ObjectReferenceFactoryImpl;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -46,7 +47,7 @@ public class PostalCodeService {
         return postalCodeRepository.deleteItem(postalCode.getNumber());
     }
 
-    public boolean updatePostalCode(PostalCode postalCode) {
+    public boolean updatePostalCode(PostalCode postalCode) throws SQLException {
         postalCodeRepository.updateItem(postalCode);
         return false;
     }
