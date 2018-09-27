@@ -26,7 +26,6 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
         super("", "", "");
     }
 
-    //TODO implement
     @Override
     public Address createObject(ResultSet resultSet) {
 
@@ -46,15 +45,13 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
             address.setPostalCode(postalCode);
             int iPerson = resultSet.getInt(PERSON);
             int iFirm = resultSet.getInt(FIRM);
-            if(iPerson > 0 ){
-            klant.setNumber(iPerson);
-            address.setKlant(klant);
+            if (iPerson > 0) {
+                klant.setNumber(iPerson);
+                address.setKlant(klant);
+            } else if (iFirm > 0) {
+                klant.setNumber(iFirm);
+                address.setKlant(klant);
             }
-            else if(iFirm >0){
-            klant.setNumber(iFirm);
-            address.setKlant(klant);
-            }
-            
             return address;
         } catch (SQLException ex) {
             Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,17 +59,14 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
         return address;
     }
 
-    //TODO implement
     @Override
     public String getColumnString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "(" + KEY + "," + TYPE + "," + STREET + "," + NUMBER + "," + BOX +  "," + POSTALCODE + "," + PERSON + "," + FIRM + ")";
     }
 
-    //TODO implement
     @Override
     public String getValuesString(Address c) {
         if (c.getKlant() instanceof Person) {
-            //client person
             return "(" + null + "," + c.getKlant().getNumber() + "," + null + ")";
         } else if (c.getKlant() instanceof Firm) {
             return "(" + null + "," + c.getKlant().getNumber() + ")";

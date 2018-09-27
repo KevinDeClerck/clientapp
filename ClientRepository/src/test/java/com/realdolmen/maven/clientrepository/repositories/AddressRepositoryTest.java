@@ -5,12 +5,19 @@ import com.realdolmen.maven.clientrepository.domain.Firm;
 import com.realdolmen.maven.clientrepository.domain.Klant;
 import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.domain.PostalCode;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.BOX;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.FIRM;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.KEY;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.NUMBER;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.PERSON;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.POSTALCODE;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.STREET;
+import static com.realdolmen.maven.clientrepository.repositories.AddressRepository.TYPE;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
@@ -20,6 +27,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 public class AddressRepositoryTest {
 
+    
     private AddressRepository addressRepository;
 
     @Mock
@@ -114,10 +122,21 @@ public class AddressRepositoryTest {
 
     @Test
     public void testGetColumnString() {
+        String test = addressRepository.getColumnString();
+        assertEquals(test, "(id,type,street,number,box,postal_code,client_person,client_firm)");      
     }
 
     @Test
     public void testGetValuesString() {
+        Klant klantP = new Person("Kevin", "De Clerck", 20);
+        Klant klantF = new Firm("Realdolmen", "IT", 15);
+        Address addressP = new Address(1, "Warmoensberg", 36, klantP);
+        Address addressF = new Address(2, "Ninoofse steenweg", 2, klantF);
+        
+        String resultP = addressRepository.getValuesString(addressP);
+        String resultF = addressRepository.getValuesString(addressF);
+        
+        assertEquals(resultP,"(" + null + "," + 20 + "," + null + ")" );
+        assertEquals(resultF, "(" + null + "," + 15 + ")");     
     }
-
 }

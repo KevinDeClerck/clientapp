@@ -1,10 +1,9 @@
-
 package com.realdolmen.maven.clientrepository.domain;
 
 import java.util.ArrayList;
 
-public class Person extends Klant{
-    
+public class Person extends Klant {
+
     private String firstName;
     private String name;
 
@@ -12,13 +11,15 @@ public class Person extends Klant{
         super(number, address);
         this.firstName = firstName;
         this.name = name;
+
     }
 
-    public Person(String firstName, String name) {
+    public Person(String firstName, String name, int number) {
+        this.number = number;
         this.firstName = firstName;
         this.name = name;
     }
-    
+
     public Person() {
     }
 
@@ -26,9 +27,7 @@ public class Person extends Klant{
     public void hello() {
         System.out.println("Ik wil geen hello zeggen");
     }
-    
 
-    
     public String getFirstName() {
         return firstName;
     }
@@ -47,11 +46,7 @@ public class Person extends Klant{
 
     @Override
     public String toString() {
-        return "Person{" +"number= "+getNumber() + ", firstName=" + firstName + ", name=" + name + '}';
+        return "Person{" + "number= " + getNumber() + ", firstName=" + firstName + ", name=" + name + '}';
     }
-    
-    
-    
-    
-    
+
 }

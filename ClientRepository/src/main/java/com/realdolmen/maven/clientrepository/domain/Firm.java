@@ -1,11 +1,21 @@
 package com.realdolmen.maven.clientrepository.domain;
 
+import java.util.ArrayList;
+
 
 public class Firm extends Klant{
     
     private String taxNumber;
     private String name;
     private String field;
+
+    public Firm(String name, String field, int number) {
+        this.number = number;
+        this.name = name;
+        this.field = field;
+    }
+    
+    
 
     public Firm() {
     }

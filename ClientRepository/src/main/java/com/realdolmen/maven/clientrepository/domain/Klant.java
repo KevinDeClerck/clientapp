@@ -12,7 +12,6 @@ public class Klant {
         this.number = number;
         this.address = address;
     }
-    
     public Klant() {
 
     }
