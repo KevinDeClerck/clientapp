@@ -46,8 +46,9 @@ public class PostalCodeService {
     public boolean removePostalCode(PostalCode postalCode) throws NoQueryPossibleException {
         return postalCodeRepository.deleteItem(postalCode.getNumber());
     }
+        //fout na het te pullen, bij de update kan hij niet de  SQLException gebruiken 
 
-    public boolean updatePostalCode(PostalCode postalCode) throws SQLException {
+    public boolean updatePostalCode(PostalCode postalCode) throws SQLException, NoQueryPossibleException {
         postalCodeRepository.updateItem(postalCode);
         return false;
     }

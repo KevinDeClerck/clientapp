@@ -77,7 +77,7 @@ public abstract class AbstractRepository<C, T> {
         }
     }
 
-    public void updateItem(C item) throws SQLException {
+    public void updateItem(C item) throws NoQueryPossibleException {
         //try it when you are curious, or have the time
         //van de abstractRepository overnemen createobject nemen 
         try(Connection connection = createConnection()){
@@ -88,7 +88,7 @@ public abstract class AbstractRepository<C, T> {
         
     //    return"";
         }catch (Exception e) {
-            throw new SQLException("Find by id " + tableName + " can not be excecuted");
+            throw new NoQueryPossibleException("Find by id " + tableName + " can not be excecuted");
         }
         
         

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

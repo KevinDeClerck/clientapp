@@ -15,17 +15,15 @@ import org.junit.Assert;
  * @param C an implementation of AbstractRepository
  * @param T an implementation of a Class in Domain
  */
-public class AbstractRepositoryTest <C extends AbstractRepository,T>{
-    
+public class AbstractRepositoryTest<C extends AbstractRepository, T> {
+
     static String URL = "jdbc:mysql://localhost:3306/clientdbtest?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     protected C repository;
-    
-    public void someTest() throws NoQueryPossibleException{
+
+    public void someTest() throws NoQueryPossibleException {
         List<T> t = repository.findAll();
         Assert.assertFalse(t.isEmpty());
     }
-    
-    
-    
+
 }
