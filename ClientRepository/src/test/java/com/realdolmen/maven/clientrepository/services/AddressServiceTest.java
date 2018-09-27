@@ -44,5 +44,4 @@ public class AddressServiceTest {
         assertEquals(addressList, result);
         verify(addressRepository, times (1)).findAll();
     }
-    
 }

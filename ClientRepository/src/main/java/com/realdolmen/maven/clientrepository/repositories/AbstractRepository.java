@@ -84,6 +84,7 @@ public abstract class AbstractRepository<C, T> {
         
          PreparedStatement pstatement = connection.prepareStatement("UPDATE" + tableName + " WHERE " + idName + " = " + item);
             pstatement.executeUpdate();
+            
         
     //    return"";
         }catch (Exception e) {

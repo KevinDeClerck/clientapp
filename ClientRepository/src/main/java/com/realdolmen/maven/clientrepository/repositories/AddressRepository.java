@@ -31,14 +31,12 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
     public Address createObject(ResultSet resultSet) {
 
         Address address = new Address();
-        PostalCode postalCode;
-        Klant firm;
-        Klant person;
+        PostalCode postalCode = new PostalCode();
+        Klant klant;
         try {
             postalCode = new PostalCode();
             address = new Address();
-            firm = new Firm();
-            person = new Person();
+            klant = new Klant();
             address.setKey(resultSet.getInt(KEY));
             address.setTypeAddress(resultSet.getString(TYPE));
             address.setNumber(resultSet.getInt(NUMBER));
@@ -46,27 +44,33 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
             address.setStreet(resultSet.getString(STREET));
             postalCode.setNumber(resultSet.getInt(POSTALCODE));
             address.setPostalCode(postalCode);
-            firm.setNumber(resultSet.getInt(FIRM));
-            address.setKlant(firm);
-            person.setNumber(resultSet.getInt(PERSON));
-            address.setKlant(person);
-        
-        return address;
-        }catch (SQLException ex) {
+            int iPerson = resultSet.getInt(PERSON);
+            int iFirm = resultSet.getInt(FIRM);
+            if(iPerson > 0 ){
+            klant.setNumber(iPerson);
+            address.setKlant(klant);
+            }
+            else if(iFirm >0){
+            klant.setNumber(iFirm);
+            address.setKlant(klant);
+            }
+            
+            return address;
+        } catch (SQLException ex) {
             Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return address;
     }
-    return address ;
-}
 
-//TODO implement
-@Override
-        public String getColumnString() {
+    //TODO implement
+    @Override
+    public String getColumnString() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     //TODO implement
     @Override
-        public String getValuesString(Address c) {
+    public String getValuesString(Address c) {
         if (c.getKlant() instanceof Person) {
             //client person
             return "(" + null + "," + c.getKlant().getNumber() + "," + null + ")";

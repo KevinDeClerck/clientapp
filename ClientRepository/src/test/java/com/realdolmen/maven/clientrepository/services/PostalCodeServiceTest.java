@@ -9,8 +9,6 @@ import com.realdolmen.maven.clientrepository.domain.PostalCode;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.realdolmen.maven.clientrepository.repositories.PostalCodeRepository;
@@ -23,9 +21,8 @@ import org.mockito.Mock;
 
 import static org.mockito.Mockito.*;
 
-/**
- * @author SDOAX36
- */
+import static org.junit.Assert.*;
+
 @RunWith(MockitoJUnitRunner.class)
 public class PostalCodeServiceTest {
 
@@ -39,7 +36,6 @@ public class PostalCodeServiceTest {
         postalCodeService = new PostalCodeService(postalCodeRepository);
     }
 
-
     @Test
     public void FindAllPostalCodesTestSuccess() throws Exception {
         List<PostalCode> postalCodes = new ArrayList<>();
@@ -48,7 +44,6 @@ public class PostalCodeServiceTest {
         assertEquals(postalCodes, result);
         verify(postalCodeRepository, times(1)).findAll();
     }
-
 
     private void createPostals(List<PostalCode> listToFill) {
         for (int i = 7; i <= 10; i++) {
@@ -71,7 +66,6 @@ public class PostalCodeServiceTest {
         verify(postalCodeRepository, times(1)).findAll();
     }
 
-
     @Test
     public void testFindById() throws Exception {
         PostalCode postalCode = new PostalCode();
@@ -92,6 +86,7 @@ public class PostalCodeServiceTest {
 
     @Test
     public void testUpdatePostalCode() {
+
     }
 
     @Test
@@ -105,5 +100,3 @@ public class PostalCodeServiceTest {
         verify(postalCodeRepository, times(1)).insertItem(postalCode);
     }
 }
-
-

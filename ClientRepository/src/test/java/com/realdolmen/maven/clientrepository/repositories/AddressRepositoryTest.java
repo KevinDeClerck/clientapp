@@ -25,17 +25,21 @@ public class AddressRepositoryTest {
     @Mock
     private ResultSet resultSet;
 
+    @Mock
+    private PostalCode postalCode;
+
     @Before
     public void init() {
         addressRepository = new AddressRepository(AbstractRepositoryTest.URL);
+        postalCode = new PostalCode();
     }
-    
-    @Ignore
-    @Test
-    public void createObjectAddressTestSuccess() throws SQLException {
+
+  @Test
+    public void createObjectAddressTestSuccessFirm() throws SQLException {
         PostalCode postalCode = new PostalCode();
-        Klant firm = new Firm();
-               
+        Klant klantA = new Person();
+        Klant klantB = new Firm();
+        
         when(resultSet.getInt(AddressRepository.KEY))
                 .thenReturn(1);
         when(resultSet.getString(AddressRepository.TYPE))
@@ -48,26 +52,64 @@ public class AddressRepositoryTest {
                 .thenReturn("straat");
         when(resultSet.getInt(AddressRepository.POSTALCODE))
                 .thenReturn(2000);
-        when(resultSet.getInt(AddressRepository.FIRM))
-                .thenReturn(1234);
         when(resultSet.getInt(AddressRepository.PERSON))
                 .thenReturn(0);
+        when(resultSet.getInt(AddressRepository.FIRM))
+                .thenReturn(1234);
+        
         
         Address result = addressRepository.createObject(resultSet);
+        
 
         postalCode = result.getPostalCode();
-        firm = result.getKlant();
-        
+        klantA = result.getKlant();
+        klantB = result.getKlant();
+
         assertEquals(1, result.getKey());
         assertEquals("home", result.getTypeAddress());
         assertEquals("straat", result.getStreet());
         assertEquals(123, result.getNumber());
         assertEquals(12, result.getBox());
         assertEquals(2000, postalCode.getNumber());
-        assertEquals(1234, firm.getNumber());
-        //assertEquals(0, klant.getNumber());
-        
+        assertEquals(1234, klantB.getNumber());
+    }
 
+    @Test
+    public void createObjectAddressTestSuccessPerson() throws SQLException {
+        PostalCode postalCode = new PostalCode();
+        Klant klantA = new Person();
+        Klant klantB = new Firm();
+
+        when(resultSet.getInt(AddressRepository.KEY))
+                .thenReturn(1);
+        when(resultSet.getString(AddressRepository.TYPE))
+                .thenReturn("home");
+        when(resultSet.getInt(AddressRepository.NUMBER))
+                .thenReturn(123);
+        when(resultSet.getInt(AddressRepository.BOX))
+                .thenReturn(12);
+        when(resultSet.getString(AddressRepository.STREET))
+                .thenReturn("straat");
+        when(resultSet.getInt(AddressRepository.POSTALCODE))
+                .thenReturn(2000);
+        when(resultSet.getInt(AddressRepository.PERSON))
+                .thenReturn(12345);
+        when(resultSet.getInt(AddressRepository.FIRM))
+                .thenReturn(0);
+
+        Address result = addressRepository.createObject(resultSet);
+
+        postalCode = result.getPostalCode();
+        klantA = result.getKlant();
+        klantB = result.getKlant();
+
+        assertEquals(1, result.getKey());
+        assertEquals("home", result.getTypeAddress());
+        assertEquals("straat", result.getStreet());
+        assertEquals(123, result.getNumber());
+        assertEquals(12, result.getBox());
+        assertEquals(2000, postalCode.getNumber());
+        assertEquals(12345, klantB.getNumber());
     }
 
     @Test

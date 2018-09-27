@@ -55,7 +55,7 @@ public class FirmRepository extends AbstractRepository<Firm, Integer>{
         return "("+TAX_ID+","+NAME+")";
     }
 
-    //TODO implement
+
     @Override
     public String getValuesString(Firm c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
