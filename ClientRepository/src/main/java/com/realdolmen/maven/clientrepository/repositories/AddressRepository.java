@@ -2,14 +2,14 @@ package com.realdolmen.maven.clientrepository.repositories;
 
 
 import com.realdolmen.maven.clientrepository.domain.*;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-
-public class AddressRepository extends AbstractRepository<Address, Integer>{
+public class AddressRepository extends AbstractRepository<Address, Integer> {
 
     public static final String TABLE_NAME = "client_address";
     public static final String KEY = "id";
@@ -20,20 +20,20 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
     public static final String POSTALCODE = "postal_code";
     public static final String PERSON = "client_person";
     public static final String FIRM = "client_firm";
-    
-    
+
+
     public AddressRepository() {
         super("address", "");
     }
-    
-    protected AddressRepository(String url){
-        super("","","");
+
+    protected AddressRepository(String url) {
+        super("", "", "");
     }
 
     //TODO implement
     @Override
     public Address createObject(ResultSet resultSet) {
-        
+
         Address address = new Address();
         PostalCode postalCode = new PostalCode();
         try {
@@ -62,14 +62,14 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
     //TODO implement
     @Override
     public String getValuesString(Address c) {
-        if (c.getKlant() instanceof Person){
+        if (c.getKlant() instanceof Person) {
             //client person
-            return "("+null+","+c.getKlant().getNumber()+","+null+")";
-        }else if (c.getKlant()instanceof Firm){
-            return "("+null+","+c.getKlant().getNumber()+")";
+            return "(" + null + "," + c.getKlant().getNumber() + "," + null + ")";
+        } else if (c.getKlant() instanceof Firm) {
+            return "(" + null + "," + c.getKlant().getNumber() + ")";
         }
         return "";
-    }   
+    }
 }
 
 

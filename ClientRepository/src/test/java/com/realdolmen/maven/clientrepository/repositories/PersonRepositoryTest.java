@@ -60,7 +60,6 @@ public class PersonRepositoryTest {
        @Test
     public void createObjectTestThrowsSQLException() throws SQLException{
         when(resultSet.getInt(PersonRepository.KEY)).thenThrow(SQLException.class);
-        
         //test the object
         Person result = personRepository.createObject(resultSet);
         
