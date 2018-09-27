@@ -7,6 +7,11 @@ public class Klant {
     
     protected int number;
     private ArrayList<Address> address;
+
+    public Klant(int number, ArrayList<Address> address) {
+        this.number = number;
+        this.address = address;
+    }
     
     public Klant() {
 
