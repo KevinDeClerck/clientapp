@@ -44,10 +44,17 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
             address.setStreet(resultSet.getString(STREET));
             postalCode.setNumber(resultSet.getInt(POSTALCODE));
             address.setPostalCode(postalCode);
-            klant.setNumber(resultSet.getInt(PERSON));
+            int iPerson = resultSet.getInt(PERSON);
+            int iFirm = resultSet.getInt(FIRM);
+            if(iPerson > 0 ){
+            klant.setNumber(iPerson);
             address.setKlant(klant);
-            klant.setNumber(resultSet.getInt(FIRM));
+            }
+            else if(iFirm >0){
+            klant.setNumber(iFirm);
             address.setKlant(klant);
+            }
+            
             return address;
         } catch (SQLException ex) {
             Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
