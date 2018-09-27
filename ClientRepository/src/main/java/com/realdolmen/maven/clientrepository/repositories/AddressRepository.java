@@ -32,7 +32,7 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
 
         Address address = new Address();
         PostalCode postalCode = new PostalCode();
-        Klant klant = new Klant();
+        Klant klant;
         try {
             postalCode = new PostalCode();
             address = new Address();
@@ -43,8 +43,11 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
             address.setBox(resultSet.getInt(BOX));
             address.setStreet(resultSet.getString(STREET));
             postalCode.setNumber(resultSet.getInt(POSTALCODE));
+            address.setPostalCode(postalCode);
             klant.setNumber(resultSet.getInt(PERSON));
+            address.setKlant(klant);
             klant.setNumber(resultSet.getInt(FIRM));
+            address.setKlant(klant);
             return address;
         } catch (SQLException ex) {
             Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,12 +1,16 @@
 package com.realdolmen.maven.clientrepository.repositories;
 
 import com.realdolmen.maven.clientrepository.domain.Address;
+import com.realdolmen.maven.clientrepository.domain.Firm;
+import com.realdolmen.maven.clientrepository.domain.Klant;
+import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.domain.PostalCode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
@@ -29,9 +33,14 @@ public class AddressRepositoryTest {
         addressRepository = new AddressRepository(AbstractRepositoryTest.URL);
         postalCode = new PostalCode();
     }
-
+    
+    
     @Test
     public void createObjectAddressTestSuccess() throws SQLException {
+        PostalCode postalCode = new PostalCode();
+        Klant klantA = new Person();
+        Klant klantB = new Firm();
+        
         when(resultSet.getInt(AddressRepository.KEY))
                 .thenReturn(1);
         when(resultSet.getString(AddressRepository.TYPE))
@@ -49,16 +58,20 @@ public class AddressRepositoryTest {
         when(resultSet.getInt(AddressRepository.FIRM))
                 .thenReturn(1234);
         Address result = addressRepository.createObject(resultSet);
-        
+
+        postalCode = result.getPostalCode();
+        klantA = result.getKlant();
+        klantB = result.getKlant();
+
         assertEquals(1, result.getKey());
         assertEquals("home", result.getTypeAddress());
         assertEquals("straat", result.getStreet());
         assertEquals(123, result.getNumber());
         assertEquals(12, result.getBox());
-        //assertEquals(4567, result.getBox());
-         postalCode = result.getPostalCode();
-        
+        //assertEquals(4567, result.get);
         assertEquals(2000, postalCode.getNumber());
+//        assertEquals(1234, klantB.getNumber());
+//        assertEquals(4567, klantA.getNumber());
 
     }
 
