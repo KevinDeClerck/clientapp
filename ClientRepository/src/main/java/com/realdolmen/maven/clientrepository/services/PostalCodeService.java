@@ -47,7 +47,7 @@ public class PostalCodeService {
     }
 
     public boolean updatePostalCode(PostalCode postalCode) {
-        postalCodeRepository.updateItem(postalCode);
+       // postalCodeRepository.updateItem(postalCode);
         return false;
     }
 

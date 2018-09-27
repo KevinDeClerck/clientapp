@@ -31,12 +31,14 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
     public Address createObject(ResultSet resultSet) {
 
         Address address = new Address();
-        PostalCode postalCode = new PostalCode();
-        Klant klant = new Klant();
+        PostalCode postalCode;
+        Klant firm;
+        Klant person;
         try {
             postalCode = new PostalCode();
             address = new Address();
-            klant = new Klant();
+            firm = new Firm();
+            person = new Person();
             address.setKey(resultSet.getInt(KEY));
             address.setTypeAddress(resultSet.getString(TYPE));
             address.setNumber(resultSet.getInt(NUMBER));
@@ -44,25 +46,27 @@ public class AddressRepository extends AbstractRepository<Address, Integer> {
             address.setStreet(resultSet.getString(STREET));
             postalCode.setNumber(resultSet.getInt(POSTALCODE));
             address.setPostalCode(postalCode);
-            klant.setNumber(resultSet.getInt(PERSON));
-            address.setKlant(klant);
-            klant.setNumber(resultSet.getInt(FIRM));
-            return address;
-        } catch (SQLException ex) {
-            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            firm.setNumber(resultSet.getInt(FIRM));
+            address.setKlant(firm);
+            person.setNumber(resultSet.getInt(PERSON));
+            address.setKlant(person);
+        
         return address;
+        }catch (SQLException ex) {
+            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return address ;
+}
 
-    //TODO implement
-    @Override
-    public String getColumnString() {
+//TODO implement
+@Override
+        public String getColumnString() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     //TODO implement
     @Override
-    public String getValuesString(Address c) {
+        public String getValuesString(Address c) {
         if (c.getKlant() instanceof Person) {
             //client person
             return "(" + null + "," + c.getKlant().getNumber() + "," + null + ")";
