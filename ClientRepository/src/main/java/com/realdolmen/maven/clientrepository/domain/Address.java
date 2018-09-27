@@ -10,9 +10,17 @@ public class Address {
     private int box;
     private PostalCode postalCode;
     private Klant klant;
+
+    public Address(int key, String street, int number, Klant klant) {
+        this.key = key;
+        this.street = street;
+        this.number = number;
+        this.klant = klant;
+    }
     
     
 
+    
     public Address(){
     }
 

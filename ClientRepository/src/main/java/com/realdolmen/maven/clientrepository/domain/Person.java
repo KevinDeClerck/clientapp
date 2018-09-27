@@ -1,11 +1,18 @@
 
 package com.realdolmen.maven.clientrepository.domain;
 
+import java.util.ArrayList;
+
 public class Person extends Klant{
     
     private String firstName;
     private String name;
 
+    public Person(String firstName, String name, int number) {     
+        this.number = number;
+        this.firstName = firstName;
+        this.name = name;
+    }    
     public Person() {
     }
 
